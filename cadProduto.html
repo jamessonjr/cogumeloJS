@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <script src="js/lib/cogumelo.js"></script>
+        <script src="js/lib/verifica.js"></script>
+        <script defer src="js/cadProduto.js"></script>
+        <link rel="stylesheet" href="css/lib/modal.css">
+        <title>Cadastro de Produto</title>
+    </head>
+    <body>
+        <form id="cadastro">
+            <label for="produtos">Produto: </label>
+            <input id="produtos" type="text" name="nome_produto" autofocus required maxlength="50">
+            <label for="valor">Preço: </label>
+            <input id="valor" type="text" name="valor_produto" required maxlength="10">
+            <label for="categorias">Categoria: </label>
+            <select id="categorias" name="id_categoria" required>
+                <option value="">Selecione uma Categoria</option>
+            </select>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </body>
+</html>

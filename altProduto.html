@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <script src="js/lib/cogumelo.js"></script>
+        <script src="js/lib/verifica.js"></script>
+        <script defer src="js/altProduto.js"></script>
+        <link rel="stylesheet" href="css/lib/modal.css">
+        <title>Alterar Produto</title>
+    </head>
+    <body>
+        <form id="alterar">
+             <label for="categorias">Categoria: </label>
+            <select id="categorias" name="id_categoria" required>
+                <option value="">Selecione uma Categoria</option>
+            </select>
+            <label for="produtos">Produto: </label>
+            <select id="produtos" name="id_produto" required>
+                <option value="">Selecione um Produto</option>
+            </select>
+            <label for="valor">Preço: </label>
+            <input id="valor" name="valor_produto" type="text" required maxlength="10">
+            <button type="submit">Alterar</button>
+        </form>
+    </body>
+</html>
