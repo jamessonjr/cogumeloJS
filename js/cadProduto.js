@@ -3,6 +3,7 @@
 /*global addCapMask*/
 /*global addValorMask*/
 /*global criaSelect*/
+/*global verifica*/
 addCapMask("produtos");
 addValorMask("valor");
 formSubmit("cadastro", "POST", "./sys/cadProduto.php");

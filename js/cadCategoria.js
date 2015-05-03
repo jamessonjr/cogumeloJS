@@ -1,6 +1,7 @@
 /*global formSubmit*/
 /*global confirma*/
 /*global addCapMask*/
+/*global verifica*/
 addCapMask("categorias");
 formSubmit("cadastro", "POST", "./sys/cadCategoria.php");
 document.getElementById("categorias").addEventListener("blur", function () {
