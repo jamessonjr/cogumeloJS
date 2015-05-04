@@ -11,7 +11,6 @@ function criaBloco(resposta, idDiv, idTitulo, titulo, idCategoria) {
     h1.appendChild(document.createTextNode(titulo));
     div.appendChild(h1);
     tabela = document.createElement("TABLE");
-    tabela.setAttribute("id", "tabela");
     div.appendChild(tabela);
     tbody = document.createElement("TBODY");
     tabela.appendChild(tbody);
