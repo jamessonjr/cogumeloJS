@@ -9,13 +9,14 @@ var n = {
     "Excluir Produto": 1,
     "Cadastro de Categoria": 2,
     "Excluir Categoria": 1
-},
-    dados = "usuario=" + window.sessionStorage.getItem("x") + "&" + "senha=" + window.sessionStorage.getItem("y");
+};
 
 //FUNÇÃO PARA VERIFICAR O LOGIN DO USUÁRIO, O SEU NÍVEL DE ACESSO
-function ajaxLogin(metodo, url, dados) {
+(function () {
     'use strict';
-    var resposta, xmlhttp = new XMLHttpRequest();
+    var dados = "usuario=" + window.sessionStorage.getItem("x") + "&" + "senha=" + window.sessionStorage.getItem("y"),
+        resposta,
+        xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             resposta = JSON.parse(xmlhttp.responseText);
@@ -32,12 +33,10 @@ function ajaxLogin(metodo, url, dados) {
             }
         }
     };
-    xmlhttp.open(metodo, url, true);
+    xmlhttp.open("POST", "./sys/login.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send(dados);
-}
-
-ajaxLogin("POST", "./sys/login.php", dados);
+}());
 
 //FUNÇÃO PARA VERIFICAR SE DADO INSERIDO NO CAMPO JÁ EXISTE NO BANCO
 function verifica(idCampo, url, msgErro) {
