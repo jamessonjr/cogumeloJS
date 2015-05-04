@@ -1,4 +1,5 @@
 <?
 include("include/conecta.php");
-retornoBanco("nome_produto", "produtos");
+$coluna = array("nome_produto", "valor_produto", "id_categoria");
+retornoBanco($coluna, "produtos");
 ?>
