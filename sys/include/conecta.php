@@ -49,8 +49,18 @@ function deleteBanco($tabela, $chave, $post) {
 
 //FUNÇÃO PARA USO COM O EVENTSOURCE CRIADO PELO JS
 function retornoBanco($coluna, $tabela) {
-    $array = array();
-    $resultado = mysqli_query($GLOBALS["link"], "SELECT $coluna, valor_produto, id_categoria FROM $tabela");
+    $array = array(); $i = 0;
+    foreach ($coluna as $chave => $valor) {
+        if ($i < sizeof($coluna)) {
+            if ($i == sizeof($coluna)-1) {
+                $valorQuery .= "$coluna[$i] ";
+            } else {
+                $valorQuery .= "$coluna[$i], ";
+            }
+        }
+        $i++;
+    }
+    $resultado = mysqli_query($GLOBALS["link"], "SELECT $valorQuery FROM $tabela");
     while ($row = mysqli_fetch_assoc($resultado)) {
         $array[$tabela][] = $row;
     }
