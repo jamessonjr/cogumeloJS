@@ -174,6 +174,33 @@ function criaSelect(idSelect, url, value, html, chave, valor) {
     }
 }
 
+//FUNÇÃO PARA GERAR CHECKBOX DINÂMICOS
+function criaBox(url, value, html, chave, valor) {
+    'use strict';
+    var i, p, input, resposta, xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            resposta = JSON.parse(xmlhttp.responseText);
+            //window.alert(xmlhttp.responseText); //DESCOMENTE PARA GERAR UM ALERTA DOS DADOS
+            for (i = 0; i < resposta[chave].length; i++) {
+                if (resposta[chave][i].id_categoria === valor) {
+                    p = document.createElement("P");
+                    input = document.createElement("INPUT");
+                    input.setAttribute("type", "checkbox");
+                    input.setAttribute("name", i);
+                    input.setAttribute("value", resposta[chave][i][value]);
+                    p.appendChild(document.createTextNode(resposta[chave][i][html]));
+                    p.appendChild(input);
+                    document.getElementById(chave).appendChild(p);
+                }
+            }
+        }
+    };
+    xmlhttp.open("POST", url, true);
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send(chave + "=" + valor);
+}
+
 //FUNÇÃO PARA CANCELAR O EVENTO SUBMIT PADRÃO DO FORMULÁRIO E FAZER O ENVIO VIA AJAX
 function formSubmit(idForm, metodo, url) {
     'use strict';
