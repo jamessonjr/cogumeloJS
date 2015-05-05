@@ -15,7 +15,7 @@ function criaBloco(resposta, idDiv, idTitulo, titulo, idCategoria) {
     tbody = document.createElement("TBODY");
     tabela.appendChild(tbody);
     for (i = 0; i < resposta.produtos.length; i++) {
-        if (resposta.produtos[i].id_categoria === idCategoria) {
+        if (resposta.produtos[i].id_categoria === idCategoria.toString()) {
             tr = document.createElement("TR");
             tbody.appendChild(tr);
             td = document.createElement("TD");
@@ -31,16 +31,16 @@ function criaBloco(resposta, idDiv, idTitulo, titulo, idCategoria) {
 }
 
 //CRIAÇÃO DO EVENTSOURCE PARA QUE O SERVIDOR FIQUE ENVIANDO OS DADOS
-var tamanho, evento = new EventSource("./sys/evento.php"), tamanho;
+var evento = new EventSource("./sys/painel.php");
 evento.onmessage = function (e) {
     'use strict';
     var i, resposta = JSON.parse(e.data);
-    if (tamanho !== resposta.produtos.length) {
-        while (document.getElementById("geral").hasChildNodes()) {
-            document.getElementById("geral").removeChild(document.getElementById("geral").firstChild);
-        }
-        criaBloco(resposta, "bebidas", "bebida", "BEBIDAS", "1");
-        criaBloco(resposta, "salgados", "salgado", "SALGADOS", "2");
+    while (document.getElementById("geral").hasChildNodes()) {
+        document.getElementById("geral").removeChild(document.getElementById("geral").firstChild);
     }
-    tamanho = resposta.produtos.length;
+    for (i = 1; i < resposta.categorias.length; i++) {
+        if (resposta.qtdCategorias[i].categoria !== "0") {
+            criaBloco(resposta, i, resposta.categorias[i].nome_categoria.toLowerCase(), resposta.categorias[i].nome_categoria, i);
+        }
+    }
 };
