@@ -47,28 +47,6 @@ function deleteBanco($tabela, $chave, $post) {
     return (mysqli_affected_rows($GLOBALS["link"]) == 1) ? true : false;
 }
 
-//FUNÇÃO PARA USO COM O EVENTSOURCE CRIADO PELO JS
-function retornoBanco($coluna, $tabela) {
-    $array = array(); $i = 0;
-    foreach ($coluna as $chave => $valor) {
-        if ($i < sizeof($coluna)) {
-            if ($i == sizeof($coluna)-1) {
-                $valorQuery .= "$coluna[$i] ";
-            } else {
-                $valorQuery .= "$coluna[$i], ";
-            }
-        }
-        $i++;
-    }
-    $resultado = mysqli_query($GLOBALS["link"], "SELECT $valorQuery FROM $tabela");
-    while ($row = mysqli_fetch_assoc($resultado)) {
-        $array[$tabela][] = $row;
-    }
-    header('Content-Type: text/event-stream');
-    header('Cache-Control: no-cache');
-    echo "data:". json_encode($array) . "\n\n";
-}
-
 //FUNÇÃO PARA VERIFICAÇÃO SE DADO JÁ EXISTE NO BANCO
 function verificaBanco($dado, $tabela, $coluna) {
     $resultado = mysqli_query($GLOBALS["link"], "SELECT $coluna FROM $tabela WHERE $coluna = '$dado'");
