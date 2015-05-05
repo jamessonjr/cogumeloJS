@@ -9,11 +9,12 @@
         <title>Excluir Produto</title>
     </head>
     <body>
+        <label for="categorias">Categoria: </label>
+        <select id="categorias" name="id_categoria" required>
+            <option value="">Selecione uma Categoria</option>
+        </select>
         <form id="excluir">
-            <label for="produtos">Produto: </label>
-            <select id="produtos" name="id_produto" required>
-                <option value="">Selecione um Produto</option>
-            </select>
+            <div id="produtos"></div>
             <button type="submit">Excluir</button>
         </form>
     </body>
