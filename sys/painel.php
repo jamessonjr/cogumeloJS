@@ -23,4 +23,6 @@ while ($row = mysqli_fetch_assoc($resultado)) {
 header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache');
 echo "data:". json_encode($arrayRetorno) . "\n\n";
+ob_flush();
+flush();
 ?>
