@@ -9,15 +9,15 @@ addValorMask("valor");
 document.getElementById("categorias").addEventListener("change", function () {
     'use strict';
     var i;
-    if (document.getElementById("categorias").value) {
-        if (document.getElementById("produtos").length > 0) {
-            for (i = 1; i < document.getElementById("produtos").length; i++) {
+    if (document.getElementById("categorias").value !== "0") {
+        if (document.getElementById("produtos").length > 1) {
+            for (i = document.getElementById("produtos").length; i >= 1; i--) {
                 document.getElementById("produtos").remove(i);
             }
         }
         criaSelect("produtos", "./sys/include/select.php", "id_produto", "nome_produto", "categorias", document.getElementById("categorias").value);
     } else {
-        for (i = 1; i < document.getElementById("produtos").length; i++) {
+        for (i = document.getElementById("produtos").length; i >= 1; i--) {
             document.getElementById("produtos").remove(i);
         }
     }
